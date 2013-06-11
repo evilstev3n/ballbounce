@@ -1,5 +1,7 @@
 //
-//
+// Ballbouncing test
+// $Author: evilstev3m@gmail.com $
+// $Purpose: Simple bouncing balls game $
 //
 
 unit Unit1;
@@ -54,17 +56,18 @@ type
     { Private declarations }
   public
     { Public declarations }
+    function ProcessCollisions: Boolean;
+    function isItemStopped(item: TMyItem): Boolean;
+    function setItemSpeed(var item: TMyItem; x: Integer; y: Integer): Boolean;
+    function checkLevelCleared: Boolean;
+
     procedure initTypes;
     procedure Tick;
     procedure DrawLevel;
-    function ProcessCollisions: Boolean;
     procedure MoveItem(var item: TMyItem);
     procedure MoveBat;
     procedure emitSound(name: string);
     procedure actionItemCollided(item: TMyItem);
-    function isItemStopped(item: TMyItem): Boolean;
-    function setItemSpeed(var item: TMyItem; x: Integer; y: Integer): Boolean;
-    function checkLevelCleared: Boolean;
     procedure refreshGui;
   end;
 
@@ -466,8 +469,8 @@ begin
     //
     if GetAsyncKeyState(VK_UP) < 0 then
     begin
-    if balls > 0 then    
-      setItemSpeed(ball, 5, 5);
+      if balls > 0 then
+        setItemSpeed(ball, 5, 5);
     end;
   end;
 
